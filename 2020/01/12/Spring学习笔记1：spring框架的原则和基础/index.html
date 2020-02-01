@@ -14,21 +14,24 @@
     
     
     
-    <title>spring1 | KoldTu&#39;s Blog</title>
+    <title>Spring学习笔记1：spring框架的原则和基础 | KoldTu&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="">
-    <meta property="og:type" content="article">
-<meta property="og:title" content="spring1">
-<meta property="og:url" content="http://yoursite.com/2020/01/12/spring1/index.html">
+    <meta name="keywords" content="-java -Spring">
+    <meta name="description" content="Spring框架搭建用idea搭好像挺容易，网上搜教程就是了 Spring基础配置spring框架本身有四大原则： 1：POJO：其实就是普通的java实体类（javabean） 2：依赖注入和基于接口编程 3：基于AOP的声明式编程 4：使用AOP和template减少模式化代码 依赖注入依赖注入指容器负责创建对象和维护对象间的依赖关系，而不是对象本身。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring学习笔记1：spring框架的原则和基础">
+<meta property="og:url" content="http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="KoldTu&#39;s Blog">
+<meta property="og:description" content="Spring框架搭建用idea搭好像挺容易，网上搜教程就是了 Spring基础配置spring框架本身有四大原则： 1：POJO：其实就是普通的java实体类（javabean） 2：依赖注入和基于接口编程 3：基于AOP的声明式编程 4：使用AOP和template减少模式化代码 依赖注入依赖注入指容器负责创建对象和维护对象间的依赖关系，而不是对象本身。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-01-12T02:51:32.000Z">
-<meta property="article:modified_time" content="2020-01-12T02:51:32.601Z">
+<meta property="article:modified_time" content="2020-01-12T09:05:47.752Z">
 <meta property="article:author" content="Kold Tu">
+<meta property="article:tag" content="-java -Spring">
 <meta name="twitter:card" content="summary">
     
         <link rel="alternate" type="application/atom+xml" title="KoldTu&#39;s Blog" href="/atom.xml">
@@ -57,7 +60,7 @@
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">Kold Tu</h5>
-          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+          <a href="mailto:1006867660@qq.com" title="1006867660@qq.com" class="mail">1006867660@qq.com</a>
         </hgroup>
       </div>
     </div>
@@ -74,26 +77,26 @@
             <li class="waves-block waves-effect">
               <a href="/archives"  >
                 <i class="icon icon-lg icon-archives"></i>
-                Archives
+                归档
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
-                Tags
+                标签
               </a>
             </li>
         
             <li class="waves-block waves-effect">
               <a href="/categories"  >
                 <i class="icon icon-lg icon-th-list"></i>
-                Categories
+                分类
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
+              <a href="https://github.com/txhan0703" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
@@ -102,7 +105,7 @@
             <li class="waves-block waves-effect">
               <a href="http://www.weibo.com/ysweb" target="_blank" >
                 <i class="icon icon-lg icon-weibo"></i>
-                Weibo
+                微博
               </a>
             </li>
         
@@ -124,7 +127,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">spring1</div>
+        <div class="flex-col header-title ellipsis">Spring学习笔记1：spring框架的原则和基础</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -146,13 +149,15 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">spring1</h1>
+        <h1 class="title">Spring学习笔记1：spring框架的原则和基础</h1>
         <h5 class="subtitle">
             
                 <time datetime="2020-01-12T02:51:32.000Z" itemprop="datePublished" class="page-time">
   2020-01-12
 </time>
 
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0-Spring/">-学习 -Spring</a></li></ul>
 
             
         </h5>
@@ -166,16 +171,25 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring框架搭建"><span class="post-toc-number">1.</span> <span class="post-toc-text">Spring框架搭建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring基础配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">Spring基础配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖注入"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">依赖注入</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
 
-<article id="post-spring1"
+
+<article id="post-Spring学习笔记1：spring框架的原则和基础"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">spring1</h1>
+        <h1 class="post-card-title">Spring学习笔记1：spring框架的原则和基础</h1>
         <div class="post-meta">
             <time class="post-time" title="2020-01-12 10:51:32" datetime="2020-01-12T02:51:32.000Z"  itemprop="datePublished">2020-01-12</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0-Spring/">-学习 -Spring</a></li></ul>
+
 
 
             
@@ -186,7 +200,14 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <h2 id="Spring框架搭建"><a href="#Spring框架搭建" class="headerlink" title="Spring框架搭建"></a>Spring框架搭建</h2><p>用idea搭好像挺容易，网上搜教程就是了</p>
+<h2 id="Spring基础配置"><a href="#Spring基础配置" class="headerlink" title="Spring基础配置"></a>Spring基础配置</h2><p>spring框架本身有四大原则：</p>
+<p>1：POJO：其实就是普通的java实体类（javabean）</p>
+<p>2：依赖注入和基于接口编程</p>
+<p>3：基于AOP的声明式编程</p>
+<p>4：使用AOP和template减少模式化代码</p>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>依赖注入指容器负责创建对象和维护对象间的依赖关系，而不是对象本身。</p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -194,12 +215,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-01-12T02:51:32.601Z" itemprop="dateUpdated">2020-01-12 10:51:32</time>
+    最后更新时间：<time datetime="2020-01-12T09:05:47.752Z" itemprop="dateUpdated">2020-01-12 17:05:47</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/01/12/spring1/" target="_blank" rel="external">http://yoursite.com/2020/01/12/spring1/</a>
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/" target="_blank" rel="external">http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/</a>
         
     </div>
     
@@ -220,6 +241,8 @@
 
         <div class="post-footer">
             
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-Spring/" rel="tag">-java -Spring</a></li></ul>
+
 
             
 <div class="page-share-wrap">
@@ -228,7 +251,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/12/spring1/&title=《spring1》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/&title=《Spring学习笔记1：spring框架的原则和基础》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -238,22 +261,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/12/spring1/&title=《spring1》 — KoldTu's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/&title=《Spring学习笔记1：spring框架的原则和基础》 — KoldTu's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/12/spring1/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《spring1》 — KoldTu's Blog&url=http://yoursite.com/2020/01/12/spring1/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring学习笔记1：spring框架的原则和基础》 — KoldTu's Blog&url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/12/spring1/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -285,9 +308,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2020/01/10/4/" id="post-next" class="post-nav-link">
+      <a href="/2020/01/11/2020-01-11-%E5%85%B3%E4%BA%8EGit%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%94%E8%AE%B0/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">论文阅读：Automated Decomposition of Build Targets</h4>
+        <h4 class="title">关于Git的一些笔记</h4>
       </a>
     </div>
   
@@ -387,7 +410,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/12/spring1/&title=《spring1》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/&title=《Spring学习笔记1：spring框架的原则和基础》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -397,22 +420,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/12/spring1/&title=《spring1》 — KoldTu's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/&title=《Spring学习笔记1：spring框架的原则和基础》 — KoldTu's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/12/spring1/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《spring1》 — KoldTu's Blog&url=http://yoursite.com/2020/01/12/spring1/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring学习笔记1：spring框架的原则和基础》 — KoldTu's Blog&url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/12/spring1/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -423,7 +446,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3ay4rDMAwF0P7/T3dgVgMl7pXsqhk4XoWEOCcboYcfj3g9f1dy/Xe93r+6c3jh4uJuc5/L9cq6ejfZLf/Vy1/CxcUd5CbBqxqAqqFtbcDFxb0nN9lu/WNJqoSLi/u/uAmlGuZwcXHvzE0KlVNlTLVkwsXFneeebZj2rr/W38XFxS1OJfKgVg12za/j4uKOcNcb7USSvIFSbaHi4uLOcHeGKL2jFcnTQvGDi4t7lLuDSN6tpkdvQh4uLu4gt3pUIg9J1ZHJm+/i4uJ+iZukHfs5VK91gouLO8M9Nbk4NarZ2hkXF/cod13G9MLQ2UYJLi7uJLc3AkmKlnxAkrdgcHFxJ7m9NkfvWEavIYKLizvP3Ull8gFt/rQ8+cHFxT3K3WHlVcl+UYSLizvJ3W9w9I5drhOjyz1xcXEHuUkrJB9/9kqgQiDDxcUd4faGqXlak4ewY1NfXFzcDW41oPRKmpyeP8XFxf00NwleefOiVywVfhgXF3eQu5OONIcivUNjuLi4N+NWGxz5+LZQFOHi4t6SeyrRSe7j4uJ+l1sYdsZNk2pBlQx6cXFxZ7g7DdPeoY1TLVdcXNwPcH8Aq7WVjH3FQNsAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT4AAAE+CAAAAAAxUyPsAAAFPUlEQVR42u3cQW7bQBAEQP3/0w5yMxCT7J5ZJoeUToEtimTRgHp7Fvl84tfXt9efP796z/1vr95z9durq7o/9up19Z7PGy98+PDhw4dvfZr7U97fTHL2+2OTs+cPY3W/+PDhw4cP34gvjwXtTSasM/RNtMoj14MVPnz48OHD9zLf2Togf+WPqv2c5Grx4cOHDx++f8W3rwnyz2wHA+3AIDkKHz58+PDhe4MvKetnlG2xnkeWtqyflQjHZh348OHDhw9fuQvr//n34Rc+fPjw4cN3tC7flONtcEmuYT8+j+4LHz58+PDhG2nkRXlOsxldbzJD8s52U9rDw8CHDx8+fPhivuRrfhMj2m1q7eh6NjbYnP3h7w4fPnz48OFb8CXRpOU7NZifDctnw/hhcMGHDx8+fPgu+PZL/WQpvvn5/vOTaiMv6PHhw4cPH74NX7sRLVmWt4vz9/aAbcYJD/eODx8+fPjwlXzt+Dn/oDbWJI92dpNt6GkfEj58+PDhw5fz5V/8xZf3oaeao2/g8jD30Ljgw4cPHz586bz48H/8MasANtFn9v52FLGKL/jw4cOHD99ozpt/8W9ix+xmZo8/6lHa/X348OHDhw/f/P01YlKmtxGnHernoWRTQODDhw8fPnwbvjwufI6+ZnVAvtRvB/n5QB0fPnz48OHb820yzqmyvo0+SbRqKYtZBz58+PDhwzcak7dbtfKyfhZK8ppgH1A2RQY+fPjw4cPX8p0NIvcPYDbA3mxK22yGOzAgx4cPHz58+G5r+v2iOokgs7F0XgfMQlU7VMCHDx8+fPhavg1cWxy0EaTdXtZWFfvz4sOHDx8+fC3fqlEIuGdj8s2DzGuFWWS5PAofPnz48OGL+WaBoH0+m+CSV/ObCDIcPODDhw8fPnwx3/1Ht5X6rGRvz5sfdXac8MN58eHDhw8fvhFfe/NtETDjm8WRWVhZBRd8+PDhw4fvUGVwarNaPTc4NCrIr2o1isCHDx8+fPhGU+xNvMg/bXaJyaedKujr4IIPHz58+PAdHZPnG8vaZXl+A7PH8Ebk+uE9+PDhw4cP34hvFgjyRXVylnwA0F5hMmxoNwTgw4cPHz58M752SHw2XszgZkv9tlYoHgY+fPjw4cMX8yUHt9/Xybj61Ca29oyzPwV8+PDhw4dvz5cvjxPKFigPK/XMf4SY/zHhw4cPHz58p/jaBXZ7Y8mDSYLF2THAkB4fPnz48OFb8M2+2nO+PAzlY+9NkMq3qV3+Fh8+fPjw4RvxzRbzmxI8jxrtzbcBZRZl6sPw4cOHDx++cnnfYs3G57NY09b3+X09yODDhw8fPnwjvnZsfHaAnceXtoKf1Rn5WAIfPnz48OFr+U5t8Mpve0bQlgUtaFtwRJT48OHDhw/faEzeFgGbYXnLvdlatxn/48OHDx8+fDO+/cXlx7bD7HZ5nxy1yXRR+4IPHz58+PDdXme7aG/HzG1MyUcCbTUw69gfPh8fPnz48OEb8eVf4bOv/3r5XTLNiowZND58+PDhw3eWbxNW2tIhr9rzsqAdhM9CVf088eHDhw8fvtFCOrmUWaxJyoLZ2LvdrLbZnIcPHz58+PAlx86W3225MDs2p28pZ8EFHz58+PDhO8XXLvLzpX47lt4EqU3kWtUB+PDhw4cP38t8eaHfLv7bemJT08+qEHz48OHDh+9v8uVFQD7MbhfzbX3Q1vFFwMKHDx8+fPhGfPsgkhcK+Ta1fYS6J8h/cnkN+PDhw4cPX8nXNtKzcDBbordFQ/7wZgOGYdGPDx8+fPjw/X79Asy5LOtFfG/rAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
