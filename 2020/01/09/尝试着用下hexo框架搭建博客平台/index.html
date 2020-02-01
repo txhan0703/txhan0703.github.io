@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/image-20200109223212975.png">
 <meta property="article:published_time" content="2020-01-09T13:03:30.000Z">
-<meta property="article:modified_time" content="2020-02-01T14:14:12.238Z">
+<meta property="article:modified_time" content="2020-02-01T14:32:26.644Z">
 <meta property="article:author" content="Kold Tu">
 <meta property="article:tag" content="-hexo">
 <meta name="twitter:card" content="summary">
@@ -108,13 +108,6 @@
               <a href="http://www.weibo.com/ysweb" target="_blank" >
                 <i class="icon icon-lg icon-weibo"></i>
                 微博
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
               </a>
             </li>
         
@@ -216,14 +209,7 @@
 
 <p>初始化hexo组件，至此一个简单的hexo博客的框架已经搭建好了。</p>
 <p>安装后的结果如图所示</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/image-20200109223212975.png" alt="图片" title>
-                </div>
-                <div class="image-caption">图片</div>
-            </figure>
-
+<p><img src="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/image-20200109223212975.png" alt></p>
 <h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>站点配置文件为hexo根目录下的_config.yml，我们称之为站点配置文件，要注意的是后面还有一个主题配置文件，文件名一样但路径不同，要注意区分。</p>
 <p>可以在站点配置文件_config.yml中，找到以下片段并修改</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">title: XXX&#39;s Blog</span><br><span class="line">author: XXX</span><br><span class="line">language: zh-CH           #中文</span><br><span class="line"></span><br><span class="line">theme: next</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@github.com:XXX&#x2F;XXX.github.io.git #你的GitHub网址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
@@ -232,26 +218,28 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
 
 <p>访问<code>http://localhost:4000</code> 即可查看主页</p>
+<p>修改配置文件和markdown文章时，一般只需要刷新就可以展示修改后的内容。</p>
+<p>如果文件名等发生改变，需要重启本地服务器，也就是再运行一次以上指令。</p>
 <h2 id="安装及修改主题"><a href="#安装及修改主题" class="headerlink" title="安装及修改主题"></a>安装及修改主题</h2><p>hexo基础框架搭建好后，我们可能需要更加完善的博客功能和更加美观的界面。</p>
-<h3 id="安装hexo-indigo主题插件"><a href="#安装hexo-indigo主题插件" class="headerlink" title="安装hexo-indigo主题插件"></a>安装hexo-indigo主题插件</h3><p>hexo-indigo是一款基于hexo的主题插件，包含更完善的功能和更美观的主题界面，访问hexo-theme-material-indigo的主页wiki，<a href="https://github.com/yscoder/hexo-theme-indigo/wiki，获取安装教程" target="_blank" rel="noopener">https://github.com/yscoder/hexo-theme-indigo/wiki，获取安装教程</a></p>
+<h3 id="安装hexo-indigo主题插件"><a href="#安装hexo-indigo主题插件" class="headerlink" title="安装hexo-indigo主题插件"></a>安装hexo-indigo主题插件</h3><p>hexo-indigo是一款基于hexo的主题插件，包含更完善的功能和更美观的主题界面，访问hexo-theme-material-indigo的主页wiki，<a href="https://github.com/yscoder/hexo-theme-indigo/wiki" target="_blank" rel="noopener">https://github.com/yscoder/hexo-theme-indigo/wiki</a>，获取安装教程</p>
 <p>需要在themes/下安装主题，在根目录下运行git bash，运行以下指令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;yscoder&#x2F;hexo-theme-indigo.git themes&#x2F;indigo</span><br></pre></td></tr></table></figure>
 
 <p>下载indigo主题。</p>
-<p>在站点配置文件_config.yml中修改：</p>
+<p>在站点配置文件<code>_config.yml</code>中修改：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: indigo</span><br></pre></td></tr></table></figure>
 
 <p>即可启用indigo主题</p>
-<p>其余必要的修改见上面提到的主页wiki，主题配置文件themes/indigo/_config.yml中有必要的注释，方便易懂每个配置项是什么。</p>
-<h3 id="安装hexo-next主题插件"><a href="#安装hexo-next主题插件" class="headerlink" title="安装hexo-next主题插件"></a>安装hexo-next主题插件</h3><p>hexo-next是另一款基于hexo的主题插件，使用方法类似，在站点配置文件_config.yml中修改：，</p>
+<p>其余必要的修改见上面提到的主页wiki，主题配置文件<code>themes/indigo/_config.yml</code>中有必要的注释，方便易懂每个配置项是什么。</p>
+<h3 id="安装hexo-next主题插件"><a href="#安装hexo-next主题插件" class="headerlink" title="安装hexo-next主题插件"></a>安装hexo-next主题插件</h3><p>hexo-next是另一款基于hexo的主题插件，使用方法类似，在站点配置文件<code>_config.yml</code>中修改：，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 
 <p>可以访问hexo-next的主页<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a> ，获取安装教程</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>hexo框架安装了主题后，整体有两个配置文件。</p>
-<p>一个是站点配置文件_config.yml</p>
-<p>一个是主题配置文件themes/indigo/_config.yml</p>
+<p>一个是站点配置文件<code>_config.yml</code></p>
+<p>一个是主题配置文件<code>themes/indigo/_config.yml</code></p>
 <p>此后有很多需要修改的地方，要注意是修改哪个配置文件。</p>
-<h2 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h2><p>hexo框架的博客文章来源于博客目录下的/source/_post里的.md文件</p>
+<h2 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h2><p>hexo框架的博客文章来源于博客目录下的<code>/source/_post</code>里的.md文件</p>
 <p>写好自己的md文件放到这个文件夹下，就可以在博客页面上展示了。</p>
 <p>建议用typora来写自己的markdown文件，也就是写文章，操作方便。</p>
 <p>撰写的文章在前端会全部展示，如果想展示一部分，其它的隐藏起来用阅读全文按钮包装，则只需要在自己的md文件里加上</p>
@@ -263,7 +251,7 @@
 <p>运行以下指令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 
-<p>安装好后，打开站点配置文件_config.yml，修改内容</p>
+<p>安装好后，打开站点配置文件<code>_config.yml</code>，修改内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>
         </div>
 
@@ -272,12 +260,12 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-02-01T14:14:12.238Z" itemprop="dateUpdated">2020-02-01 22:14:12</time>
+    最后更新时间：<time datetime="2020-02-01T14:32:26.644Z" itemprop="dateUpdated">2020-02-01 22:32:26</time>
 </span><br>
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/" target="_blank" rel="external">http://yoursite.com/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/</a>
+        Write by Kold Tu
         
     </div>
     
@@ -539,23 +527,6 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
 
 
 
