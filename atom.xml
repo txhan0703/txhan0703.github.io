@@ -91,16 +91,94 @@
   
   <entry>
     <title>论文阅读：Automated Decomposition of Build Targets</title>
-    <link href="http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/"/>
-    <id>http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/</id>
+    <link href="http://yoursite.com/2020/01/10/ICSE2015%20Automated%20Decomposition%20of%20Build%20Targets/"/>
+    <id>http://yoursite.com/2020/01/10/ICSE2015%20Automated%20Decomposition%20of%20Build%20Targets/</id>
     <published>2020-01-10T07:29:14.000Z</published>
-    <updated>2020-01-12T08:55:59.475Z</updated>
+    <updated>2020-03-01T03:49:25.622Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="研究背景-amp-简介"><a href="#研究背景-amp-简介" class="headerlink" title="研究背景&amp;简介"></a>研究背景&amp;简介</h2><p>在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。</p><p>target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要的编译等待等待。如果可以将未充分利用的target分解成较小的目标，可以使得代码更加模块化，减少依赖等待时间从而加快编译速度。</p><p>作者分析了Google的构建系统（Google build system），提出了两个工具DECOMPOSER和REFINER，用于识别和重构未充分利用的目标。</p><p>（该论文与我组目前的研究方向十分契合，虽然需要分析的构建系统不一样但思路十分值得借鉴。）</p><a id="more"></a><h2 id="构建系统"><a href="#构建系统" class="headerlink" title="构建系统"></a>构建系统</h2><p>在构建过程中，构建系统识别target的步骤是：</p><p>构建依赖的target-&gt;构建</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="ICSE2015-Automated-Decomposition-of-Build-Targets"><a href="#ICSE2015-Automated-Decomposition-of-Build-Targets" class="headerlink" title="ICSE2015 Automated Decomposition of Build Targets"></a>ICSE2015 Automated Decomposition of Build Targets</h2><h3 id="提出问题：构建过程中未充分利用（underutilized）的target的拆分和重构"><a href="#提出问题：构建过程中未充分利用（underutilized）的target的拆分和重构" class="headerlink" title="提出问题：构建过程中未充分利用（underutilized）的target的拆分和重构"></a>提出问题：构建过程中未充分利用（underutilized）的target的拆分和重构</h3><p>在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。</p><p>target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要的编译等待等待。如果可以将未充分利用的target分解成较小的目标，可以使得代码更加模块化，减少依赖等待时间从而加快编译速度。</p><p>识别和重构未充分利用的target是一项非常繁琐的工作，如何更好的识别和重构未充分利用的构建target是本文主要探讨的问题。</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>作者分析了Google的构建系统（Google build system），提出了两个工具DECOMPOSER和REFINER，用于识别和重构未充分利用的target。</p><p>DECOMPOSER:识别工具，建议如何将其分解为子target</p><p>REFINER:重构工具，更新分解后的依赖项</p><h4 id="DECOMPOSER："><a href="#DECOMPOSER：" class="headerlink" title="DECOMPOSER："></a>DECOMPOSER：</h4><p>DECOMPOSER首先计算由目标的文件级依赖关系组成的图的强连通分量，然后逐次迭代的统一两个组件，直到只剩下两个组件。最后将剩下的组件提升为target。</p><p>DECOMPOSER有以下特性</p><p>1：依赖图</p><p>构建一个target内部文件级别的依赖图。</p><p>2：分解粒度</p><p>默认分解成两个子target，但可以人工配置分解为更多的target。</p><p>3：触发保存（Trigger Saving）：</p><p>作者定义了触发保存(Trigger Saving)的概念，令p1为更改仅影响t1部分文件的概率，p2为更改仅影响t2部分文件的概率，意在估算分解target、更新依赖关系后不会触发更改的相关目标的预期数目。</p><p>Trigger Saving 的值为p1(集合2-集合1)+p2(集合1-集合2)</p><p>Decomposer算法步骤如下：</p><p>1：计算出给定target的引用图（即文件级别的依赖图）的强连通分量（SCC）</p><p>2：查找与每个SCC相关的target</p><p>3：逐次迭代的统一两个SCC，目的是最大程度的节省trigger saving，概念见上，直到剩下两组</p><p>4：更新构建规范</p><h4 id="REFINER"><a href="#REFINER" class="headerlink" title="REFINER:"></a>REFINER:</h4><p>给定一个target，通过DECOMPOSER分为两组后，REFINER会对它的每个依赖项先生成一个补丁，查明它依赖于其中的哪一组。</p><h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><ol><li>依赖图不仅包括target依赖，每个target的文件级别依赖关系可以考虑可视化展示到前端。</li><li>参考DECOMPOSER工具的算法，给出拆分target建议，降低单个target的被依赖数，使得编译更加模块化，减少不必要的编译等待时间。</li><li>华为要求通过一些指标化的参数，来给出整个产品架构的建议，Trigger Saving的建模思路可以作为一个参考。</li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;研究背景-amp-简介&quot;&gt;&lt;a href=&quot;#研究背景-amp-简介&quot; class=&quot;headerlink&quot; title=&quot;研究背景&amp;amp;简介&quot;&gt;&lt;/a&gt;研究背景&amp;amp;简介&lt;/h2&gt;&lt;p&gt;在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。&lt;/p&gt;
+      
+      
+        &lt;h2 id=&quot;ICSE2015-Automated-Decomposition-of-Build-Targets&quot;&gt;&lt;a href=&quot;#ICSE2015-Automated-Decomposition-of-Build-Targets&quot; class=&quot;headerlink&quot; t
+      
+    
+    </summary>
+    
+    
+      <category term="-学习 -论文阅读" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+      <category term="-论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读：Automated Decomposition of Build Targets</title>
+    <link href="http://yoursite.com/2020/01/10/ICST2019%20Efficient%20Automated%20Decomposition%20of%20Build%20Targets%20at%20Large-Scale/"/>
+    <id>http://yoursite.com/2020/01/10/ICST2019%20Efficient%20Automated%20Decomposition%20of%20Build%20Targets%20at%20Large-Scale/</id>
+    <published>2020-01-10T07:29:14.000Z</published>
+    <updated>2020-03-01T03:49:50.998Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ICST2019-Efficient-Automated-Decomposition-of-Build-Targets-at-Large-Scale"><a href="#ICST2019-Efficient-Automated-Decomposition-of-Build-Targets-at-Large-Scale" class="headerlink" title="ICST2019 Efficient Automated Decomposition of Build Targets at Large-Scale"></a>ICST2019 Efficient Automated Decomposition of Build Targets at Large-Scale</h2><h3 id="提出问题：构建过程中未充分利用（underutilized）的target的自动分解算法"><a href="#提出问题：构建过程中未充分利用（underutilized）的target的自动分解算法" class="headerlink" title="提出问题：构建过程中未充分利用（underutilized）的target的自动分解算法"></a>提出问题：构建过程中未充分利用（underutilized）的target的自动分解算法</h3><p>代码大规模构建系统中的组件（target）有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。本文提出了一种将未充分利用的组件自动查找和分解为一组较小的组件的方法工具AutoDecomposer。</p><p>之前的研究中已经提出了在输入最终组件数量时进行分解的方法，但作者提出的AutoDecomposer，该算法可以自动查找组件数量。</p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>算法类似之前Valikan等人的2015那篇文章的贪心算法，统一两个组件，逐次迭代，标准是incurring loss最小，直到最后只剩下两个组件。</p><p>每次迭代记下损耗值并且存储组件图。基于这些中间值计算出结果。</p><p>详细步骤如下：</p><p>1：对整体dag求出所有强连通分量，对每个分量计算它依赖、被依赖的target</p><p>2：启发式生成组件：优先考虑寻找合并有共同上下游依赖的组件。优先合并根和叶子。</p><p>3：确定组件数目：把每次迭代的累计亏损记录下来画成散点图，到第一点和最后一点的连线的距离最长的点的横坐标即为最适合分割的组件数。</p><p>如图<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8725538/8730146/8730208/jende3-173600a457-large.gif" alt title>                </div>                <div class="image-caption"></div>            </figure></p><h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>损失函数的定义是 |D(C2)-D(C1)|·|T(C1)-T(C2)|+|D(C1)-D(C2)|·|T(C2)-T(C1)|</p><p>（D：上层依赖，T：下层依赖）</p><p>表所有上层依赖项中未使用的传递依赖总数</p><h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><p>参考AutoDecomposer工具的算法，给出拆分target建议，包括拆分成多少块。考虑在前端页面展示拆分后的架构图。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;ICST2019-Efficient-Automated-Decomposition-of-Build-Targets-at-Large-Scale&quot;&gt;&lt;a href=&quot;#ICST2019-Efficient-Automated-Decomposition-of-
+      
+    
+    </summary>
+    
+    
+      <category term="-学习 -论文阅读" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+      <category term="-论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读：Automated Decomposition of Build Targets</title>
+    <link href="http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/"/>
+    <id>http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/</id>
+    <published>2020-01-10T07:29:14.000Z</published>
+    <updated>2020-03-01T03:49:37.806Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study"><a href="#ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study" class="headerlink" title="ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study"></a>ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</h2><h3 id="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"><a href="#提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题" class="headerlink" title="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"></a>提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题</h3><p>目前使用大型现代构建系统的开发人员，都或多或少面临以下问题：构建失败和构建时间过长的故障排除。面对这些问题时，开发人员很难处理。作者在这篇论文中，旨在了解开发人员面对分布式构建所面临挑战的本质，并设计一种工具(BuildExplorer)来帮助人们更好地理解和解决与构建相关的问题。</p><p>作者的研究主要针对以下两个问题：</p><ol><li>开发人员使用现代的缓存和分布式构建系统会面临哪些挑战？</li><li>哪些挑战需要工具支持开发者理解，调试和优化？</li></ol><h3 id="调查研究"><a href="#调查研究" class="headerlink" title="调查研究"></a>调查研究</h3><p>作者在Microsoft进行了调查研究，揭示了工程师在理解，调试和优化CDBS（大型分布式构建系统）方面面临的挑战，并帮助加深了对他们的实践，需求，问题和要求的了解。</p><p>这些见解为迭代设计和开发BuildExplorer提供了支持。确定了工具的两个主要用例：</p><p>用例1<br>针对特定的性能问题调试构建会话。此任务需要对各种数据进行深入分析。</p><p>用例2<br>为客户项目优化端到端构建的性能。该任务通常会导致有关软件体系结构重构的建议。</p><h3 id="BuildExplorer"><a href="#BuildExplorer" class="headerlink" title="BuildExplorer"></a>BuildExplorer</h3><p>BuildExplorer有以下几个特性：</p><p>1：单页面视图，把所有内容放在一个页面内</p><p>2：构建摘要视图，表示构建的每个阶段花费的时间统计等</p><p>3：依赖关系图，用直方图和折线图的形式表该层target的target数目和target构建时间</p><p>4：target属性可视化，展示target的依赖</p><p>5：最长关键路径可视化，展示最长关键路径的target层和时间</p><p>6：目标列表、目标详细信息等等…</p><h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><ol><li>过长、连续的构建链或者过慢的单个构建target都可能造成昂贵的构建瓶颈。在构建架构的参数指标上，可以把这两点作为重要的评判标准。构建链连续长度过长时或者单个构建target时间过高的情况下给予提示。</li><li>可视化方面，考虑在targettracing中添加更多视图。例如构建阶段时间统计(B)，依赖关系图(C)，最长关键路径(D)，参考图片<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8528818/8529823/8530055/8530055-fig-4-source-large.gif" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study&quot;&gt;&lt;a href=&quot;#ICSME2018-Understanding-Debug
+      
+    
+    </summary>
+    
+    
+      <category term="-学习 -论文阅读" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+      <category term="-论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读：Automated Decomposition of Build Targets</title>
+    <link href="http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/"/>
+    <id>http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/</id>
+    <published>2020-01-10T07:29:14.000Z</published>
+    <updated>2020-02-12T02:26:31.289Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ICSE2015-Automated-Decomposition-of-Build-Targets"><a href="#ICSE2015-Automated-Decomposition-of-Build-Targets" class="headerlink" title="ICSE2015 Automated Decomposition of Build Targets"></a>ICSE2015 Automated Decomposition of Build Targets</h1><h2 id="研究背景-amp-简介"><a href="#研究背景-amp-简介" class="headerlink" title="研究背景&amp;简介"></a>研究背景&amp;简介</h2><p>在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。</p><p>target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要的编译等待等待。如果可以将未充分利用的target分解成较小的目标，可以使得代码更加模块化，减少依赖等待时间从而加快编译速度。</p><p>作者分析了Google的构建系统（Google build system），提出了两个工具DECOMPOSER和REFINER，用于识别和重构未充分利用的目标。</p><p>（该论文与我组目前的研究方向十分契合，虽然需要分析的构建系统不一样但思路十分值得借鉴。）</p><a id="more"></a><h2 id="构建系统"><a href="#构建系统" class="headerlink" title="构建系统"></a>构建系统</h2><p>在构建过程中，构建系统识别target的步骤是：</p><p>构建依赖的target-&gt;构建</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;ICSE2015-Automated-Decomposition-of-Build-Targets&quot;&gt;&lt;a href=&quot;#ICSE2015-Automated-Decomposition-of-Build-Targets&quot; class=&quot;headerlink&quot; title=&quot;ICSE2015 Automated Decomposition of Build Targets&quot;&gt;&lt;/a&gt;ICSE2015 Automated Decomposition of Build Targets&lt;/h1&gt;&lt;h2 id=&quot;研究背景-amp-简介&quot;&gt;&lt;a href=&quot;#研究背景-amp-简介&quot; class=&quot;headerlink&quot; title=&quot;研究背景&amp;amp;简介&quot;&gt;&lt;/a&gt;研究背景&amp;amp;简介&lt;/h2&gt;&lt;p&gt;在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。&lt;/p&gt;
 &lt;p&gt;target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要的编译等待等待。如果可以将未充分利用的target分解成较小的目标，可以使得代码更加模块化，减少依赖等待时间从而加快编译速度。&lt;/p&gt;
 &lt;p&gt;作者分析了Google的构建系统（Google build system），提出了两个工具DECOMPOSER和REFINER，用于识别和重构未充分利用的目标。&lt;/p&gt;
 &lt;p&gt;（该论文与我组目前的研究方向十分契合，虽然需要分析的构建系统不一样但思路十分值得借鉴。）&lt;/p&gt;

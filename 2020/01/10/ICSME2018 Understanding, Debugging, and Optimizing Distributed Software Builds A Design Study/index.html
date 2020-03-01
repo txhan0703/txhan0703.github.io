@@ -21,18 +21,20 @@
     
     
     <meta name="keywords" content="-论文">
-    <meta name="description" content="ICSE2015 Automated Decomposition of Build Targets研究背景&amp;简介在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。 target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要">
+    <meta name="description" content="ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题目前使用大型现代构建系统的开发人员，都或多或少面临以下问题：构建失败和构建时间过长的故障排除。面对这些问题时，开发人员很难处理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读：Automated Decomposition of Build Targets">
-<meta property="og:url" content="http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/index.html">
 <meta property="og:site_name" content="KoldTu&#39;s Blog">
-<meta property="og:description" content="ICSE2015 Automated Decomposition of Build Targets研究背景&amp;简介在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。 target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要">
+<meta property="og:description" content="ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题目前使用大型现代构建系统的开发人员，都或多或少面临以下问题：构建失败和构建时间过长的故障排除。面对这些问题时，开发人员很难处理。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8528818/8529823/8530055/8530055-fig-4-source-large.gif">
 <meta property="article:published_time" content="2020-01-10T07:29:14.000Z">
-<meta property="article:modified_time" content="2020-02-12T02:26:31.289Z">
+<meta property="article:modified_time" content="2020-03-01T03:49:37.806Z">
 <meta property="article:author" content="Kold Tu">
 <meta property="article:tag" content="-论文">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8528818/8529823/8530055/8530055-fig-4-source-large.gif">
     
         <link rel="alternate" type="application/atom+xml" title="KoldTu&#39;s Blog" href="/atom.xml">
     
@@ -167,12 +169,12 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ICSE2015-Automated-Decomposition-of-Build-Targets"><span class="post-toc-number">1.</span> <span class="post-toc-text">ICSE2015 Automated Decomposition of Build Targets</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#研究背景-amp-简介"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">研究背景&amp;简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建系统"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">构建系统</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study"><span class="post-toc-number">1.</span> <span class="post-toc-text">ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调查研究"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">调查研究</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BuildExplorer"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">BuildExplorer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启发"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">启发</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-论文阅读：Automated Decomposition of Build Targets"
+<article id="post-ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
@@ -193,14 +195,33 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="ICSE2015-Automated-Decomposition-of-Build-Targets"><a href="#ICSE2015-Automated-Decomposition-of-Build-Targets" class="headerlink" title="ICSE2015 Automated Decomposition of Build Targets"></a>ICSE2015 Automated Decomposition of Build Targets</h1><h2 id="研究背景-amp-简介"><a href="#研究背景-amp-简介" class="headerlink" title="研究背景&amp;简介"></a>研究背景&amp;简介</h2><p>在代码大规模编译系统的构建过程中的target，有时存在未充分利用（underutilized）的现象。即有些target是未充分利用的，依赖这个target只是依赖其中一部分的文件。</p>
-<p>target未充分利用的现象会导致一系列问题：代码不够模块化，不必要的构建和测试触发器，不必要的编译等待等待。如果可以将未充分利用的target分解成较小的目标，可以使得代码更加模块化，减少依赖等待时间从而加快编译速度。</p>
-<p>作者分析了Google的构建系统（Google build system），提出了两个工具DECOMPOSER和REFINER，用于识别和重构未充分利用的目标。</p>
-<p>（该论文与我组目前的研究方向十分契合，虽然需要分析的构建系统不一样但思路十分值得借鉴。）</p>
-<a id="more"></a>
-
-<h2 id="构建系统"><a href="#构建系统" class="headerlink" title="构建系统"></a>构建系统</h2><p>在构建过程中，构建系统识别target的步骤是：</p>
-<p>构建依赖的target-&gt;构建</p>
+            <h2 id="ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study"><a href="#ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study" class="headerlink" title="ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study"></a>ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</h2><h3 id="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"><a href="#提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题" class="headerlink" title="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"></a>提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题</h3><p>目前使用大型现代构建系统的开发人员，都或多或少面临以下问题：构建失败和构建时间过长的故障排除。面对这些问题时，开发人员很难处理。作者在这篇论文中，旨在了解开发人员面对分布式构建所面临挑战的本质，并设计一种工具(BuildExplorer)来帮助人们更好地理解和解决与构建相关的问题。</p>
+<p>作者的研究主要针对以下两个问题：</p>
+<ol>
+<li>开发人员使用现代的缓存和分布式构建系统会面临哪些挑战？</li>
+<li>哪些挑战需要工具支持开发者理解，调试和优化？</li>
+</ol>
+<h3 id="调查研究"><a href="#调查研究" class="headerlink" title="调查研究"></a>调查研究</h3><p>作者在Microsoft进行了调查研究，揭示了工程师在理解，调试和优化CDBS（大型分布式构建系统）方面面临的挑战，并帮助加深了对他们的实践，需求，问题和要求的了解。</p>
+<p>这些见解为迭代设计和开发BuildExplorer提供了支持。确定了工具的两个主要用例：</p>
+<p>用例1<br>针对特定的性能问题调试构建会话。此任务需要对各种数据进行深入分析。</p>
+<p>用例2<br>为客户项目优化端到端构建的性能。该任务通常会导致有关软件体系结构重构的建议。</p>
+<h3 id="BuildExplorer"><a href="#BuildExplorer" class="headerlink" title="BuildExplorer"></a>BuildExplorer</h3><p>BuildExplorer有以下几个特性：</p>
+<p>1：单页面视图，把所有内容放在一个页面内</p>
+<p>2：构建摘要视图，表示构建的每个阶段花费的时间统计等</p>
+<p>3：依赖关系图，用直方图和折线图的形式表该层target的target数目和target构建时间</p>
+<p>4：target属性可视化，展示target的依赖</p>
+<p>5：最长关键路径可视化，展示最长关键路径的target层和时间</p>
+<p>6：目标列表、目标详细信息等等…</p>
+<h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><ol>
+<li>过长、连续的构建链或者过慢的单个构建target都可能造成昂贵的构建瓶颈。在构建架构的参数指标上，可以把这两点作为重要的评判标准。构建链连续长度过长时或者单个构建target时间过高的情况下给予提示。</li>
+<li>可视化方面，考虑在targettracing中添加更多视图。例如构建阶段时间统计(B)，依赖关系图(C)，最长关键路径(D)，参考图片<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8528818/8529823/8530055/8530055-fig-4-source-large.gif" alt title>
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+</ol>
 
         </div>
 
@@ -209,7 +230,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-02-12T02:26:31.289Z" itemprop="dateUpdated">2020-02-12 10:26:31</time>
+    最后更新时间：<time datetime="2020-03-01T03:49:37.806Z" itemprop="dateUpdated">2020-03-01 11:49:37</time>
 </span><br>
 
 
@@ -245,7 +266,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -255,22 +276,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&source=ICSE2015 Automated Decomposition of Build Targets研究背景&amp;简介在代码大规模编译系统的构建过程中的..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -293,7 +314,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/" id="post-prev" class="post-nav-link">
+      <a href="/2020/01/10/ICST2019%20Efficient%20Automated%20Decomposition%20of%20Build%20Targets%20at%20Large-Scale/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">论文阅读：Automated Decomposition of Build Targets</h4>
       </a>
@@ -302,9 +323,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2020/01/09/2019.12.11%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/" id="post-next" class="post-nav-link">
+      <a href="/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">2019.12.11会议记录</h4>
+        <h4 class="title">论文阅读：Automated Decomposition of Build Targets</h4>
       </a>
     </div>
   
@@ -404,7 +425,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -414,22 +435,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&source=ICSE2015 Automated Decomposition of Build Targets研究背景&amp;简介在代码大规模编译系统的构建过程中的..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/&title=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《论文阅读：Automated Decomposition of Build Targets》 — KoldTu's Blog&url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9AAutomated%20Decomposition%20of%20Build%20Targets/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -440,7 +461,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEi0lEQVR42u3awW7bQAwE0Pz/T6fnorA9QyqoVnk+FYW90j4FEDnLr6/48/3i8+93Xv3q3++8Wie/k/drvrrb9opfmDBhwoTpcKZ86fc39H7N91dPfpuv034z+SPAhAkTJkynM7UXTiAS3GSF9j7zwiVZExMmTJgw/Tamza3kKO+58yY2KWswYcKECROmpDjYbynfcN4kzwJfTJgwYcL0PKZ8ufyGZq/82WOYrf8jWTgmTJgwYboZU/syftK/L/5gwoQJE6abMX2Xn+Qy+4Z5Nvy6OUb9sGtMmDBhwnQsU3so2B5q5hub/Sp5nJtDUEyYMGHC9DymPE5ti4O8FMiD16TgyIuSD7vGhAkTJkzHMu0b2nxL7WFkPpTThtTDg0xMmDBhwnQUUx7pbqLezQY2K7TlzjALx4QJEyZMN2ZqIdqXeh6/zprYWXPb4mLChAkTpnOZZo3lpizIC4s23m1xi2EjTJgwYcJ0LNPmku34Tt7i5k3pZgyo/S0mTJgwYTqRaRV6xq//WRu8H9zJH/OHb2LChAkTpmOZ8sB0dqObNdu4uR0Jah8eJkyYMGE6kem7/LTN8P5YdFMQzI5RP2ThmDBhwoTpKKb2k0e9m7C1bVCTl3o+KjRMyjFhwoQJ042Zkh+0RUPegs7WnK0za8UxYcKECdNTmdqQdDagc+1R6GxfUSmDCRMmTJgOZ5pFojnuplnN4+Cr2uyXrS8mTJgwYTqQqc2AW5R8hbzgaBPrNnrefQkTJkyYMN2F6arxmnaF2eZnxUF7LUyYMGHC9GymttHNW9lk9CdvR68KfKOSBRMmTJgwPYKpPb/bHIVuCoJry5HoHjBhwoQJ07FM+VZzyvb1v1+/fbTDmBsTJkyYMB3OdNXrf3Y8mbfiSVmQDP20zTMmTJgwYTqRaTYE07688yh59p287Eha/SIDwIQJEyZMhzBtgtQEqB21aYuPtvFuD2gxYcKECdPpTG272JYU+7C1vav2lf/hDjFhwoQJ07FM+1Z281LPG+8kxm0h2sIFEyZMmDCdyJRfPm8yc6z2GDJ/2jl9FEBjwoQJE6ZjmWYRbTsKsxkVmo3+5JRF6YMJEyZMmA5kysPZfMhmFsvmj2e27U3EjAkTJkyYzmVqaTbR6gbxJwLcTeiMCRMmTJhOYUrayFlBMDvUbF/S7TntcAAIEyZMmDAdy5QXAXlBkBx2tu3ovrxo4+YP4zuYMGHChOkQptnwTb6BTZy6Gdy5NpLGhAkTJkzPYMpfk+3IzixsbR9SO8qT/4lgwoQJE6ZzmfI2Mg+C8+PGTdHQPsJZmRKl45gwYcKE6cZM3+VnFpK2/5O/zvPhofZamDBhwoTpGUz7amK2XH6AOhswapvezTAQJkyYMGG6P1P+Us8vk2ygbbmvCm2HjxwTJkyYMB3OlISzw+T4oqh3AzqsgzBhwoQJ069n2oe2m8PINoZuj07/+hUmTJgwYcI02nzbZrdws6PW/1wQYMKECROmH2DaL9duI39U+4PJPPC94DgTEyZMmDDdjGkzarMJT696JBuIyyJgTJgwYcJ0R6Y/b+c5unQM9ZYAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAElElEQVR42u3aS24bMRAFQN//0gqQXWBIeq97BhCVmpXhWBRZE4D9+/mJn8ff5/dvfv/+9d/8/vnZCo8nz+t18t//3PFgwoQJE6aPZHq8fJJtPTtwsvX8U8nOE4jZWTBhwoQJ0+lM+XLJZ/MDJ6/nzQHiUzw7V7QaJkyYMGH6D5g2+WAeaiTcCUHysjFhwoQJE6Y8ib22QNx+775YjAkTJkyYvptpn4K2bcIZer7zWcvzglo4JkyYMGH6MKbZkb7j5xvnmzBhwoQJ0wcwPcpn1pJMNtp+V5JC5/t8c2pMmDBhwnQsU94UnKWam6Gf2RhQ2xbN18SECRMmTKcztYM1s1Js3qTML/tNIFKEI5gwYcKE6UCm9gv2lHlwkIcX7b/mQQYmTJgwYTqdaX+d5xd2i3J3mDLbJyZMmDBhOoupLYYmV3ubjraHmZVr27bom0YmJkyYMGE6hKktuebX6iydToKS1yHCrDQcrYAJEyZMmA5kmg24bIq/r/naZuQs4Hi9ztNaOCZMmDBh+lKmNlCYtRuTVPayCKhcDRMmTJgwfQdTvmj79/tm5OzFtMHHVBETJkyYMH0601XPbM37BoYS+qi9igkTJkyYDmeaXf/t18+CjzyYaEOKIuXGhAkTJkyHM7Ufmw30JL+Z/X3STF0NAGHChAkTpmOZorGV0YY25eAWqE2Mh0VnTJgwYcJ0IFN7ZW6KufmwTv5iNjR5qowJEyZMmL6DqS34tsXfa7uE9+3nTUCACRMmTJgOZMqv5GuLrXlSmrRC8yu/DUcwYcKECdPpTO2ITHvdbsq7xXjNYv3LIiBMmDBhwvSRTLMtzlbeBB95ApzvrR7ZwYQJEyZMRzHlm9hcrpuLfJZsbwKX6P8UJkyYMGE6iik/5P4abr8r/9RmzChvnWLChAkTprOYZk3EvFWZj4TOmpf74CBKpzFhwoQJ07FM+RbzNDK/aO+Ia9oV6jNiwoQJE6YDmYqWXozSDgblL2aWbLdl6LrGjAkTJkyYPpJplihuUtb8APmVn7+GHPef1TBhwoQJ07FMs6ZmW+Rtg4a8IZon2NcWfzFhwoQJ01lM+UJt0XZz6W5S5dmLf1MgxoQJEyZMBzJdmyjmB8hfSZ7ott9bNG4xYcKECdOxTLOLNm9z5snwZshm1nNsk21MmDBhwnQi0x1BQH68x+hp0+MLyDBhwoQJ07FMs+XyQZy2lZjjtn3azQgRJkyYMGE6l2kz4JLz7RFnJeD9/5qntXBMmDBhwnQgU36MfFgnKebO0tEkmEj2ELU2MWHChAnTsUwJUJsM56lpnosnAUQbIrTJPCZMmDBhOpHp2lbibGQnOV5b2N18V/GWMGHChAnTxzNdFUfsN5Sn0JvRnFm6jgkTJkyYTmeajcu0F39beG3Dl1mhuWhzYsKECROmw5nalmF7+PZqn4UOmyT2TVKNCRMmTJj+A6ZZVp1f5G3htQ0j8t2uAgJMmDBhwvTVTEUyuRgJmpWe27QZEyZMmDB9E1N+Ye+7o+2ATtI0vf1TmDBhwoTpWKbZ4M4+MW4Lx3mrMr/H26IzJkyYMGE6iukP/BfJKomssBkAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
