@@ -91,6 +91,32 @@
   
   <entry>
     <title>论文阅读：Automated Decomposition of Build Targets</title>
+    <link href="http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/"/>
+    <id>http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/</id>
+    <published>2020-01-10T07:29:14.000Z</published>
+    <updated>2020-03-01T03:49:37.806Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study"><a href="#ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study" class="headerlink" title="ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study"></a>ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</h2><h3 id="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"><a href="#提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题" class="headerlink" title="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"></a>提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题</h3><p>目前使用大型现代构建系统的开发人员，都或多或少面临以下问题：构建失败和构建时间过长的故障排除。面对这些问题时，开发人员很难处理。作者在这篇论文中，旨在了解开发人员面对分布式构建所面临挑战的本质，并设计一种工具(BuildExplorer)来帮助人们更好地理解和解决与构建相关的问题。</p><p>作者的研究主要针对以下两个问题：</p><ol><li>开发人员使用现代的缓存和分布式构建系统会面临哪些挑战？</li><li>哪些挑战需要工具支持开发者理解，调试和优化？</li></ol><h3 id="调查研究"><a href="#调查研究" class="headerlink" title="调查研究"></a>调查研究</h3><p>作者在Microsoft进行了调查研究，揭示了工程师在理解，调试和优化CDBS（大型分布式构建系统）方面面临的挑战，并帮助加深了对他们的实践，需求，问题和要求的了解。</p><p>这些见解为迭代设计和开发BuildExplorer提供了支持。确定了工具的两个主要用例：</p><p>用例1<br>针对特定的性能问题调试构建会话。此任务需要对各种数据进行深入分析。</p><p>用例2<br>为客户项目优化端到端构建的性能。该任务通常会导致有关软件体系结构重构的建议。</p><h3 id="BuildExplorer"><a href="#BuildExplorer" class="headerlink" title="BuildExplorer"></a>BuildExplorer</h3><p>BuildExplorer有以下几个特性：</p><p>1：单页面视图，把所有内容放在一个页面内</p><p>2：构建摘要视图，表示构建的每个阶段花费的时间统计等</p><p>3：依赖关系图，用直方图和折线图的形式表该层target的target数目和target构建时间</p><p>4：target属性可视化，展示target的依赖</p><p>5：最长关键路径可视化，展示最长关键路径的target层和时间</p><p>6：目标列表、目标详细信息等等…</p><h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><ol><li>过长、连续的构建链或者过慢的单个构建target都可能造成昂贵的构建瓶颈。在构建架构的参数指标上，可以把这两点作为重要的评判标准。构建链连续长度过长时或者单个构建target时间过高的情况下给予提示。</li><li>可视化方面，考虑在targettracing中添加更多视图。例如构建阶段时间统计(B)，依赖关系图(C)，最长关键路径(D)，参考图片<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8528818/8529823/8530055/8530055-fig-4-source-large.gif" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study&quot;&gt;&lt;a href=&quot;#ICSME2018-Understanding-Debug
+      
+    
+    </summary>
+    
+    
+      <category term="-学习 -论文阅读" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+      <category term="-论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读：Automated Decomposition of Build Targets</title>
     <link href="http://yoursite.com/2020/01/10/ICSE2015%20Automated%20Decomposition%20of%20Build%20Targets/"/>
     <id>http://yoursite.com/2020/01/10/ICSE2015%20Automated%20Decomposition%20of%20Build%20Targets/</id>
     <published>2020-01-10T07:29:14.000Z</published>
@@ -129,32 +155,6 @@
       
       
         &lt;h2 id=&quot;ICST2019-Efficient-Automated-Decomposition-of-Build-Targets-at-Large-Scale&quot;&gt;&lt;a href=&quot;#ICST2019-Efficient-Automated-Decomposition-of-
-      
-    
-    </summary>
-    
-    
-      <category term="-学习 -论文阅读" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
-    
-    
-      <category term="-论文" scheme="http://yoursite.com/tags/%E8%AE%BA%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>论文阅读：Automated Decomposition of Build Targets</title>
-    <link href="http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/"/>
-    <id>http://yoursite.com/2020/01/10/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/</id>
-    <published>2020-01-10T07:29:14.000Z</published>
-    <updated>2020-03-01T03:49:37.806Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study"><a href="#ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study" class="headerlink" title="ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study"></a>ICSME2018 Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</h2><h3 id="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"><a href="#提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题" class="headerlink" title="提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题"></a>提出问题：帮助软件工程师更好的解决使用大型分布式构建系统时遇到的理解、调试、优化等问题</h3><p>目前使用大型现代构建系统的开发人员，都或多或少面临以下问题：构建失败和构建时间过长的故障排除。面对这些问题时，开发人员很难处理。作者在这篇论文中，旨在了解开发人员面对分布式构建所面临挑战的本质，并设计一种工具(BuildExplorer)来帮助人们更好地理解和解决与构建相关的问题。</p><p>作者的研究主要针对以下两个问题：</p><ol><li>开发人员使用现代的缓存和分布式构建系统会面临哪些挑战？</li><li>哪些挑战需要工具支持开发者理解，调试和优化？</li></ol><h3 id="调查研究"><a href="#调查研究" class="headerlink" title="调查研究"></a>调查研究</h3><p>作者在Microsoft进行了调查研究，揭示了工程师在理解，调试和优化CDBS（大型分布式构建系统）方面面临的挑战，并帮助加深了对他们的实践，需求，问题和要求的了解。</p><p>这些见解为迭代设计和开发BuildExplorer提供了支持。确定了工具的两个主要用例：</p><p>用例1<br>针对特定的性能问题调试构建会话。此任务需要对各种数据进行深入分析。</p><p>用例2<br>为客户项目优化端到端构建的性能。该任务通常会导致有关软件体系结构重构的建议。</p><h3 id="BuildExplorer"><a href="#BuildExplorer" class="headerlink" title="BuildExplorer"></a>BuildExplorer</h3><p>BuildExplorer有以下几个特性：</p><p>1：单页面视图，把所有内容放在一个页面内</p><p>2：构建摘要视图，表示构建的每个阶段花费的时间统计等</p><p>3：依赖关系图，用直方图和折线图的形式表该层target的target数目和target构建时间</p><p>4：target属性可视化，展示target的依赖</p><p>5：最长关键路径可视化，展示最长关键路径的target层和时间</p><p>6：目标列表、目标详细信息等等…</p><h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><ol><li>过长、连续的构建链或者过慢的单个构建target都可能造成昂贵的构建瓶颈。在构建架构的参数指标上，可以把这两点作为重要的评判标准。构建链连续长度过长时或者单个构建target时间过高的情况下给予提示。</li><li>可视化方面，考虑在targettracing中添加更多视图。例如构建阶段时间统计(B)，依赖关系图(C)，最长关键路径(D)，参考图片<figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8528818/8529823/8530055/8530055-fig-4-source-large.gif" alt title>                </div>                <div class="image-caption"></div>            </figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;ICSME2018-Understanding-Debugging-and-Optimizing-Distributed-Software-Builds-A-Design-Study&quot;&gt;&lt;a href=&quot;#ICSME2018-Understanding-Debug
       
     
     </summary>
