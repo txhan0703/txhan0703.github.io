@@ -14,27 +14,30 @@
     
     
     
-    <title>Spring学习笔记2：springboot框架搭建 | KoldTu&#39;s Blog</title>
+    <title>C/C++语言头文件依赖关系的构建和拆分浅析 | KoldTu&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="-java -Spring">
-    <meta name="description" content="Spring Boot框架搭建和分类                                                                                             spring boot代码编写框架">
+    <meta name="keywords" content="-C/C++ -header dependency">
+    <meta name="description" content="项目相关帮助合作方处理Target内部文件级别依赖问题 Target内部结构1：如果一个Target2链接了库libt1.so，则其中应该有文件include了target1中的.h文件，如果没有这种文件级别依赖，则这个依赖链不应存在，提示修改（应该不能直接提示删除，具体参见5）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring学习笔记2：springboot框架搭建">
-<meta property="og:url" content="http://yoursite.com/2020/01/12/spring2/index.html">
+<meta property="og:title" content="C&#x2F;C++语言头文件依赖关系的构建和拆分浅析">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/CLanguage/index.html">
 <meta property="og:site_name" content="KoldTu&#39;s Blog">
-<meta property="og:description" content="Spring Boot框架搭建和分类                                                                                             spring boot代码编写框架">
+<meta property="og:description" content="项目相关帮助合作方处理Target内部文件级别依赖问题 Target内部结构1：如果一个Target2链接了库libt1.so，则其中应该有文件include了target1中的.h文件，如果没有这种文件级别依赖，则这个依赖链不应存在，提示修改（应该不能直接提示删除，具体参见5）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2020/01/12/spring2/20190518173534439.png">
-<meta property="article:published_time" content="2020-01-12T03:05:45.000Z">
-<meta property="article:modified_time" content="2020-03-18T15:39:22.591Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/CLanguage/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/CLanguage/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/CLanguage/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/18/CLanguage/4.png">
+<meta property="article:published_time" content="2020-03-18T15:15:31.000Z">
+<meta property="article:modified_time" content="2020-03-18T15:36:19.078Z">
 <meta property="article:author" content="Kold Tu">
-<meta property="article:tag" content="-java -Spring">
+<meta property="article:tag" content="-C&#x2F;C++ -header dependency">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/01/12/spring2/20190518173534439.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/18/CLanguage/1.png">
     
         <link rel="alternate" type="application/atom+xml" title="KoldTu&#39;s Blog" href="/atom.xml">
     
@@ -122,7 +125,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Spring学习笔记2：springboot框架搭建</div>
+        <div class="flex-col header-title ellipsis">C/C++语言头文件依赖关系的构建和拆分浅析</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -144,15 +147,15 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Spring学习笔记2：springboot框架搭建</h1>
+        <h1 class="title">C/C++语言头文件依赖关系的构建和拆分浅析</h1>
         <h5 class="subtitle">
             
-                <time datetime="2020-01-12T03:05:45.000Z" itemprop="datePublished" class="page-time">
-  2020-01-12
+                <time datetime="2020-03-18T15:15:31.000Z" itemprop="datePublished" class="page-time">
+  2020-03-18
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0-Spring/">-学习 -Spring</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0-Target%E6%8B%86%E5%88%86/">-学习 -Target拆分</a></li></ul>
 
             
         </h5>
@@ -169,21 +172,21 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Spring-Boot框架搭建和分类"><span class="post-toc-number">1.</span> <span class="post-toc-text">Spring Boot框架搭建和分类</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目相关"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目相关</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Target内部结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">Target内部结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#事实的情况"><span class="post-toc-number">3.</span> <span class="post-toc-text">事实的情况</span></a></li></ol>
         </nav>
     </aside>
 
 
-<article id="post-spring2"
-  class="post-article article-type-post fade" itemprop="blogPost">
+<article id="clanguage-CLanguage"
+  class="post-article article-type-clanguage fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">Spring学习笔记2：springboot框架搭建</h1>
+        <h1 class="post-card-title">C/C++语言头文件依赖关系的构建和拆分浅析</h1>
         <div class="post-meta">
-            <time class="post-time" title="2020-01-12 11:05:45" datetime="2020-01-12T03:05:45.000Z"  itemprop="datePublished">2020-01-12</time>
+            <time class="post-time" title="2020-03-18 23:15:31" datetime="2020-03-18T15:15:31.000Z"  itemprop="datePublished">2020-03-18</time>
 
             
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0-Spring/">-学习 -Spring</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%AD%A6%E4%B9%A0-Target%E6%8B%86%E5%88%86/">-学习 -Target拆分</a></li></ul>
 
 
 
@@ -195,13 +198,53 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="Spring-Boot框架搭建和分类"><a href="#Spring-Boot框架搭建和分类" class="headerlink" title="Spring Boot框架搭建和分类"></a>Spring Boot框架搭建和分类</h2><figure class="image-bubble">
+            <h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><p>帮助合作方处理Target内部文件级别依赖问题</p>
+<h2 id="Target内部结构"><a href="#Target内部结构" class="headerlink" title="Target内部结构"></a>Target内部结构</h2><p>1：如果一个Target2链接了库libt1.so，则其中应该有文件include了target1中的.h文件，如果没有这种文件级别依赖，则这个依赖链不应存在，提示修改（应该不能直接提示删除，具体参见5）。</p>
+<figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2020/01/12/spring2/20190518173534439.png" alt="spring boot代码编写框架" title>
+                    <img src="/2020/03/18/CLanguage/1.png" alt="1" title>
                 </div>
-                <div class="image-caption">spring boot代码编写框架</div>
+                <div class="image-caption">1</div>
             </figure>
+
+<p>2：一个target的输入一般是一个文件夹。在一个target内，.h文件定义它的函数名/变量名，依赖于这个target的.c写这些函数。</p>
+<p>如图，t1.h中定义函数名/变量名，t1、t2、t3中写这些函数/变量。</p>
+<p>如果不做源码级别的分析，只知道每个文件寻找依赖时的日志。我们可以知道main.c中依赖了t1.h，但是不知道main.c中到底用了t1.h中定义的哪些函数或者变量。也就不知道用的函数或者变量到底写在哪个文件t1.c/t2.c/t3.c中，在这个级别上无法做拆分。</p>
+<p>3：可以做拆分的情况：</p>
+<p>如图，target内部可能出现如下图的情况：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2020/03/18/CLanguage/2.png" alt="2" title>
+                </div>
+                <div class="image-caption">2</div>
+            </figure>
+
+<p>如果是这种情况的话，拆分还是比较好做的，两个分量分别计算上下游依赖就是了</p>
+<p>或者这种情况</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2020/03/18/CLanguage/3.png" alt="3" title>
+                </div>
+                <div class="image-caption">3</div>
+            </figure>
+
+<p>这种情况可以拆成这样的两个分量</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2020/03/18/CLanguage/4.png" alt="4" title>
+                </div>
+                <div class="image-caption">4</div>
+            </figure>
+
+<p>再分别计算依赖即可</p>
+<p>如果耦合度过高，每个.c都include了很多.h，或者只有一个.h头文件，则不好拆成分量。</p>
+<h2 id="事实的情况"><a href="#事实的情况" class="headerlink" title="事实的情况"></a>事实的情况</h2><p>在我研究了一些开源项目，以一个用于查找include的符号在哪里用到的项目include-what-you-use为例（简称IWYU），项目地址<code>https://github.com/include-what-you-use/include-what-you-use.git</code>，该项目目前似乎只有一个Target</p>
+<p>发现：大多数的.c都include了.h，甚至.h自己也include了.h</p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -209,7 +252,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-03-18T15:39:22.591Z" itemprop="dateUpdated">2020-03-18 23:39:22</time>
+    最后更新时间：<time datetime="2020-03-18T15:36:19.078Z" itemprop="dateUpdated">2020-03-18 23:36:19</time>
 </span><br>
 
 
@@ -235,7 +278,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java-Spring/" rel="tag">-java -Spring</a></li></ul>
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C-header-dependency/" rel="tag">-C/C++ -header dependency</a></li></ul>
 
 
             
@@ -245,7 +288,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/12/spring2/&title=《Spring学习笔记2：springboot框架搭建》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/03/18/CLanguage/&title=《C/C++语言头文件依赖关系的构建和拆分浅析》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -255,22 +298,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/12/spring2/&title=《Spring学习笔记2：springboot框架搭建》 — KoldTu's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/03/18/CLanguage/&title=《C/C++语言头文件依赖关系的构建和拆分浅析》 — KoldTu's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/12/spring2/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/03/18/CLanguage/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring学习笔记2：springboot框架搭建》 — KoldTu's Blog&url=http://yoursite.com/2020/01/12/spring2/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C/C++语言头文件依赖关系的构建和拆分浅析》 — KoldTu's Blog&url=http://yoursite.com/2020/03/18/CLanguage/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/12/spring2/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/03/18/CLanguage/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -290,21 +333,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2020/03/01/ICST2019%20Efficient%20Automated%20Decomposition%20of%20Build%20Targets%20at%20Large-Scale/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">论文阅读：Efficient Automated Decomposition of Build Targets at Large-Scale</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/" id="post-next" class="post-nav-link">
+      <a href="/2020/03/01/ICSME2018%20Understanding,%20Debugging,%20and%20Optimizing%20Distributed%20Software%20Builds%20A%20Design%20Study/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Spring学习笔记1：spring框架的原则和基础</h4>
+        <h4 class="title">论文阅读：Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</h4>
       </a>
     </div>
   
@@ -404,7 +440,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/01/12/spring2/&title=《Spring学习笔记2：springboot框架搭建》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/03/18/CLanguage/&title=《C/C++语言头文件依赖关系的构建和拆分浅析》 — KoldTu's Blog&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -414,22 +450,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/01/12/spring2/&title=《Spring学习笔记2：springboot框架搭建》 — KoldTu's Blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/03/18/CLanguage/&title=《C/C++语言头文件依赖关系的构建和拆分浅析》 — KoldTu's Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/12/spring2/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/03/18/CLanguage/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring学习笔记2：springboot框架搭建》 — KoldTu's Blog&url=http://yoursite.com/2020/01/12/spring2/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《C/C++语言头文件依赖关系的构建和拆分浅析》 — KoldTu's Blog&url=http://yoursite.com/2020/03/18/CLanguage/&via=http://yoursite.com" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/12/spring2/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2020/03/18/CLanguage/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -440,7 +476,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABx0lEQVR42u3ay47CMAwFUP7/pztbpBHh2mkMSCerClpyysLyI49HvK6n9fzJ/+v1/eunblu4uLjb3Gu5ctya+2qv3ICLizvPfRUxevesr/OghouL+yvcN4GmmJ/g4uL+OndNTF6vWgjh4uJ+lpsUP/kGvRTn5loNFxd3g5unJueuj/R3cXFxW9yruKpFUd42jXbHxcUd4e6MUpIUJxm65L+Ji4s7w02SjDwMRU2NeBCLi4v7DdzqkYsclISqKKTi4uKOcHtNkHzEkge7pIjCxcWd5FZbHnk4O9FSwcXFneHmD1fTmuqAtjBiwcXFPcztNTd7jY9q8HozSsHFxT3MrZY6vVfqDW5vqMxwcXG3uTstjN4Jq/wPwsXFneH2SqBqVZKnUIWFi4s7wq02OKq/0CuKcHFx57nrEJOkI/tD1uQQBi4u7jy3d0irevRqJ/zh4uLOcK/iqo5IeyHy5be4uLgj3Gpw2SmHEnq+Ly4u7mlu9RhEdeNeqGomOri4uLdye2OV/QOa+QgWFxf3m7n5Br0XKxzMwsXF/WJuntz0iqU3kx9cXNxj3Lz4qVLy9mtUAuHi4o5we4PP/DhFtbNxw+AWFxe3z/0DyHJ7ir2/GxoAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzklEQVR42u3aQY7DIBAEwPz/01lpTyvZJj0DJl6pfIrsxFQ4jKCH1yu+3r/X38/H6+rp8f7xnYsvXFzcae57eI25ydOZKTh5Dy4u7kZu8rpxVRlPwfhXiQEXF/eZ3HHxSgpZUihxcXH/F3dm+PEdXFzcZ3KrYUf+NP97i/dquLi4E9xeYLr28+35Li4u7qKuRF68ekuZ8ri4uLhbuNXmRy80yatT9FtcXNybucmQq0pYtQ1zcgcXF3cLt9oWzSOSZM9SjUtwcXH3cHvxZV7s8qIWTRwuLu4W7lSzs7Vk6UUkuLi43+KOlx0zf6bXNP0QjuDi4t7GTRYr+ZamOk/lqAUXF/cx3LyQrdosXY6Ii4u7kVstZ0kJ632ncFoEFxf3Nm6v+THTml2wSMLFxd3CnTk+lS9o8sClF6Pg4uLu5BaaHK0GSR624uLifoubb36qbdrmYiXvAuHi4i7i9oKJaqNlpk96meLg4uLexp2vfGvpuLi4z+FWi1cSmM7PX2EVhouLexs3CTiqQWpvw/PhDbi4uI/k9lomvXJ5YsPFxX0YtxqOJN/MN0u4uLj7udWDFHnLpLetuhwFFxd3C7camPYOWs0c8pjKd3FxcWvcH51R3UR5Jn68AAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 

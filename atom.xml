@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-01T03:57:02.600Z</updated>
+  <updated>2020-03-18T15:36:19.078Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C/C++语言头文件依赖关系的构建和拆分浅析</title>
+    <link href="http://yoursite.com/2020/03/18/CLanguage/"/>
+    <id>http://yoursite.com/2020/03/18/CLanguage/</id>
+    <published>2020-03-18T15:15:31.000Z</published>
+    <updated>2020-03-18T15:36:19.078Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="项目相关"><a href="#项目相关" class="headerlink" title="项目相关"></a>项目相关</h2><p>帮助合作方处理Target内部文件级别依赖问题</p><h2 id="Target内部结构"><a href="#Target内部结构" class="headerlink" title="Target内部结构"></a>Target内部结构</h2><p>1：如果一个Target2链接了库libt1.so，则其中应该有文件include了target1中的.h文件，如果没有这种文件级别依赖，则这个依赖链不应存在，提示修改（应该不能直接提示删除，具体参见5）。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/03/18/CLanguage/1.png" alt="1" title>                </div>                <div class="image-caption">1</div>            </figure><p>2：一个target的输入一般是一个文件夹。在一个target内，.h文件定义它的函数名/变量名，依赖于这个target的.c写这些函数。</p><p>如图，t1.h中定义函数名/变量名，t1、t2、t3中写这些函数/变量。</p><p>如果不做源码级别的分析，只知道每个文件寻找依赖时的日志。我们可以知道main.c中依赖了t1.h，但是不知道main.c中到底用了t1.h中定义的哪些函数或者变量。也就不知道用的函数或者变量到底写在哪个文件t1.c/t2.c/t3.c中，在这个级别上无法做拆分。</p><p>3：可以做拆分的情况：</p><p>如图，target内部可能出现如下图的情况：</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/03/18/CLanguage/2.png" alt="2" title>                </div>                <div class="image-caption">2</div>            </figure><p>如果是这种情况的话，拆分还是比较好做的，两个分量分别计算上下游依赖就是了</p><p>或者这种情况</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/03/18/CLanguage/3.png" alt="3" title>                </div>                <div class="image-caption">3</div>            </figure><p>这种情况可以拆成这样的两个分量</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/03/18/CLanguage/4.png" alt="4" title>                </div>                <div class="image-caption">4</div>            </figure><p>再分别计算依赖即可</p><p>如果耦合度过高，每个.c都include了很多.h，或者只有一个.h头文件，则不好拆成分量。</p><h2 id="事实的情况"><a href="#事实的情况" class="headerlink" title="事实的情况"></a>事实的情况</h2><p>在我研究了一些开源项目，以一个用于查找include的符号在哪里用到的项目include-what-you-use为例（简称IWYU），项目地址<code>https://github.com/include-what-you-use/include-what-you-use.git</code>，该项目目前似乎只有一个Target</p><p>发现：大多数的.c都include了.h，甚至.h自己也include了.h</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;项目相关&quot;&gt;&lt;a href=&quot;#项目相关&quot; class=&quot;headerlink&quot; title=&quot;项目相关&quot;&gt;&lt;/a&gt;项目相关&lt;/h2&gt;&lt;p&gt;帮助合作方处理Target内部文件级别依赖问题&lt;/p&gt;
+&lt;h2 id=&quot;Target内部结构&quot;&gt;&lt;a href=&quot;#Targ
+      
+    
+    </summary>
+    
+    
+      <category term="-学习 -Target拆分" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-Target%E6%8B%86%E5%88%86/"/>
+    
+    
+      <category term="-C/C++ -header dependency" scheme="http://yoursite.com/tags/C-C-header-dependency/"/>
+    
+  </entry>
   
   <entry>
     <title>论文阅读：Understanding, Debugging, and Optimizing Distributed Software Builds A Design Study</title>
@@ -95,11 +122,11 @@
   </entry>
   
   <entry>
-    <title>Spring学习笔记2：spring框架的搭建等</title>
+    <title>Spring学习笔记2：springboot框架搭建</title>
     <link href="http://yoursite.com/2020/01/12/spring2/"/>
     <id>http://yoursite.com/2020/01/12/spring2/</id>
     <published>2020-01-12T03:05:45.000Z</published>
-    <updated>2020-02-01T14:56:53.196Z</updated>
+    <updated>2020-03-18T15:39:22.591Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Spring-Boot框架搭建和分类"><a href="#Spring-Boot框架搭建和分类" class="headerlink" title="Spring Boot框架搭建和分类"></a>Spring Boot框架搭建和分类</h2><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/01/12/spring2/20190518173534439.png" alt="spring boot代码编写框架" title>                </div>                <div class="image-caption">spring boot代码编写框架</div>            </figure>]]></content>
     
@@ -113,6 +140,10 @@
     </summary>
     
     
+      <category term="-学习 -Spring" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-Spring/"/>
+    
+    
+      <category term="-java -Spring" scheme="http://yoursite.com/tags/java-Spring/"/>
     
   </entry>
   
@@ -121,9 +152,9 @@
     <link href="http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2020/01/12/Spring%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%EF%BC%9Aspring%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8E%9F%E5%88%99%E5%92%8C%E5%9F%BA%E7%A1%80/</id>
     <published>2020-01-12T02:51:32.000Z</published>
-    <updated>2020-01-12T09:05:47.752Z</updated>
+    <updated>2020-03-18T15:38:34.721Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Spring框架搭建"><a href="#Spring框架搭建" class="headerlink" title="Spring框架搭建"></a>Spring框架搭建</h2><p>用idea搭好像挺容易，网上搜教程就是了</p><h2 id="Spring基础配置"><a href="#Spring基础配置" class="headerlink" title="Spring基础配置"></a>Spring基础配置</h2><p>spring框架本身有四大原则：</p><p>1：POJO：其实就是普通的java实体类（javabean）</p><p>2：依赖注入和基于接口编程</p><p>3：基于AOP的声明式编程</p><p>4：使用AOP和template减少模式化代码</p><h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>依赖注入指容器负责创建对象和维护对象间的依赖关系，而不是对象本身。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Spring框架搭建"><a href="#Spring框架搭建" class="headerlink" title="Spring框架搭建"></a>Spring框架搭建</h2><p>用idea搭好像挺容易，网上搜教程就是了</p><h2 id="Spring基础配置"><a href="#Spring基础配置" class="headerlink" title="Spring基础配置"></a>Spring基础配置</h2><p>spring框架本身有四大原则：</p><p>1：POJO：其实就是普通的java实体类（javabean）</p><p>2：依赖注入和基于接口编程</p><p>3：基于AOP的声明式编程</p><p>4：使用AOP和template减少模式化代码</p><h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>依赖注入指容器负责创建对象和维护对象间的依赖关系，而不是对象本身。</p><h2 id="Spring基本知识"><a href="#Spring基本知识" class="headerlink" title="Spring基本知识"></a>Spring基本知识</h2><p>1：依赖注入</p><p>2：控制反转</p><p>3：AOP</p>]]></content>
     
     <summary type="html">
     
@@ -168,6 +199,32 @@
   </entry>
   
   <entry>
+    <title>尝试着用下hexo框架搭建博客平台</title>
+    <link href="http://yoursite.com/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/"/>
+    <id>http://yoursite.com/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/</id>
+    <published>2020-01-09T13:03:30.000Z</published>
+    <updated>2020-03-18T15:12:53.238Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装hexo组件"><a href="#安装hexo组件" class="headerlink" title="安装hexo组件"></a>安装hexo组件</h2><p>首先容我吐槽一下，这篇文章是一边安装hexo、搭建hexo-next主题时候一边写的，安装的过程比我想象中的还是麻烦太多太多了我佛了。（当然主要是自己踩了很多的坑）</p><p>首先保证全局安装git以及node.js（npm），这个不多赘述，直接上git和node.js的官网下载安装就行，网上也有很多教程，安装时也有图形化的提示，直接照着提示来就行。</p><p>一定要保证全局安装。</p><p>然后建立一个空文件夹，右键-&gt;Git bash here，一定要是新建的空的文件夹，后面称之为根目录。</p><a id="more"></a><p>在git bash中输入以下指令并运行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure><p>下载安装好hexo后，运行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure><p>初始化hexo组件，至此一个简单的hexo博客的框架已经搭建好了。</p><p>安装后的结果如图所示</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/image-20200109223212975.png" alt title>                </div>                <div class="image-caption"></div>            </figure><h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>站点配置文件为hexo根目录下的_config.yml，我们称之为站点配置文件，要注意的是后面还有一个主题配置文件，文件名一样但路径不同，要注意区分。</p><p>可以在站点配置文件_config.yml中，找到以下片段并修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">title: XXX&#39;s Blog</span><br><span class="line">author: XXX</span><br><span class="line">language: zh-CH           #中文</span><br><span class="line"></span><br><span class="line">theme: next</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@github.com:XXX&#x2F;XXX.github.io.git #你的GitHub网址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure><h2 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h2><p>运行以下指令，即可在本地直接部署hexo博客</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>访问<code>http://localhost:4000</code> 即可查看主页</p><p>修改配置文件和markdown文章时，一般只需要刷新就可以展示修改后的内容。</p><p>如果文件名等发生改变，需要重启本地服务器，也就是再运行一次以上指令。</p><h2 id="安装及修改主题"><a href="#安装及修改主题" class="headerlink" title="安装及修改主题"></a>安装及修改主题</h2><p>hexo基础框架搭建好后，我们可能需要更加完善的博客功能和更加美观的界面。</p><h3 id="安装hexo-indigo主题插件"><a href="#安装hexo-indigo主题插件" class="headerlink" title="安装hexo-indigo主题插件"></a>安装hexo-indigo主题插件</h3><p>hexo-indigo是一款基于hexo的主题插件，包含更完善的功能和更美观的主题界面，访问hexo-theme-material-indigo的主页wiki，<a href="https://github.com/yscoder/hexo-theme-indigo/wiki" target="_blank" rel="noopener">https://github.com/yscoder/hexo-theme-indigo/wiki</a>，获取安装教程</p><p>需要在themes/下安装主题，在根目录下运行git bash，运行以下指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;yscoder&#x2F;hexo-theme-indigo.git themes&#x2F;indigo</span><br></pre></td></tr></table></figure><p>下载indigo主题。</p><p>在站点配置文件<code>_config.yml</code>中修改：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: indigo</span><br></pre></td></tr></table></figure><p>即可启用indigo主题</p><p>其余必要的修改见上面提到的主页wiki，主题配置文件<code>themes/indigo/_config.yml</code>中有必要的注释，方便易懂每个配置项是什么。</p><h3 id="安装hexo-next主题插件"><a href="#安装hexo-next主题插件" class="headerlink" title="安装hexo-next主题插件"></a>安装hexo-next主题插件</h3><p>hexo-next是另一款基于hexo的主题插件，使用方法类似，在站点配置文件<code>_config.yml</code>中修改：，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure><p>可以访问hexo-next的主页<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a> ，获取安装教程</p><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>hexo框架安装了主题后，整体有两个配置文件。</p><p>一个是站点配置文件<code>_config.yml</code></p><p>一个是主题配置文件<code>themes/indigo/_config.yml</code></p><p>此后有很多需要修改的地方，要注意是修改哪个配置文件。</p><h2 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h2><p>hexo框架的博客文章来源于博客目录下的<code>/source/_post</code>里的.md文件</p><p>写好自己的md文件放到这个文件夹下，就可以在博客页面上展示了。</p><p>建议用typora来写自己的markdown文件，也就是写文章，操作方便。</p><p>撰写的文章在前端会全部展示，如果想展示一部分，其它的隐藏起来用阅读全文按钮包装，则只需要在自己的md文件里加上</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure><p>这个标签以后的内容会隐藏起来，点击阅读全文才会显示。</p><p>效果如图。</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/1584543362.jpg" alt="1584543362" title>                </div>                <div class="image-caption">1584543362</div>            </figure><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/1584543362.png" alt title>                </div>                <div class="image-caption"></div>            </figure><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>默认的Hexo是无法插入图片的。需要安装hexo图片插件</p><p>运行以下指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure><p>安装好后，打开站点配置文件<code>_config.yml</code>，修改内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure><p>MarkDown文件的插入图片方法是写入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](&lt;图片路径&gt;.jpg)</span><br></pre></td></tr></table></figure><p>所以在<code>_post</code>里面新建一个图片文件夹，图片都放里面就行了</p><h2 id="部署至GitHub页面"><a href="#部署至GitHub页面" class="headerlink" title="部署至GitHub页面"></a>部署至GitHub页面</h2><p>绑定Github:</p><p>首先新建一个github.io库，在github上创建一个repository，这个repository的名字必须是<code>&lt;username&gt;.github.io</code></p><p>打开站点配置文件<code>_config.yml</code>，修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@github.com:&lt;username&gt;&#x2F;&lt;username&gt;.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure><p>在hexo目录运行以下指令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure><p>然后可以照以前说的指令先在本地调试</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>再打开<code>localhost:4000</code>调试</p><p>要是需要上传至GitHub，则</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>打开<code>&lt;username&gt;.github.io</code>即可</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;安装hexo组件&quot;&gt;&lt;a href=&quot;#安装hexo组件&quot; class=&quot;headerlink&quot; title=&quot;安装hexo组件&quot;&gt;&lt;/a&gt;安装hexo组件&lt;/h2&gt;&lt;p&gt;首先容我吐槽一下，这篇文章是一边安装hexo、搭建hexo-next主题时候一边写的，安装的过程比我想象中的还是麻烦太多太多了我佛了。（当然主要是自己踩了很多的坑）&lt;/p&gt;
+&lt;p&gt;首先保证全局安装git以及node.js（npm），这个不多赘述，直接上git和node.js的官网下载安装就行，网上也有很多教程，安装时也有图形化的提示，直接照着提示来就行。&lt;/p&gt;
+&lt;p&gt;一定要保证全局安装。&lt;/p&gt;
+&lt;p&gt;然后建立一个空文件夹，右键-&amp;gt;Git bash here，一定要是新建的空的文件夹，后面称之为根目录。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="-学习 -环境搭建" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+      <category term="-hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2019.12.11会议记录</title>
     <link href="http://yoursite.com/2020/01/09/2019.12.11%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/"/>
     <id>http://yoursite.com/2020/01/09/2019.12.11%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95/</id>
@@ -188,32 +245,6 @@
     
       <category term="-学习 -环境搭建" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>尝试着用下hexo框架搭建博客平台</title>
-    <link href="http://yoursite.com/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/"/>
-    <id>http://yoursite.com/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/</id>
-    <published>2020-01-09T13:03:30.000Z</published>
-    <updated>2020-02-01T14:32:26.644Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装hexo组件"><a href="#安装hexo组件" class="headerlink" title="安装hexo组件"></a>安装hexo组件</h2><p>首先容我吐槽一下，这篇文章是一边安装hexo、搭建hexo-next主题时候一边写的，安装的过程比我想象中的还是麻烦太多太多了我佛了。（当然主要是自己踩了很多的坑）</p><p>首先保证全局安装git以及node.js（npm），这个不多赘述，直接上git和node.js的官网下载安装就行，网上也有很多教程，安装时也有图形化的提示，直接照着提示来就行。</p><p>一定要保证全局安装。</p><p>然后建立一个空文件夹，右键-&gt;Git bash here，一定要是新建的空的文件夹，后面称之为根目录。</p><a id="more"></a><p>在git bash中输入以下指令并运行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure><p>下载安装好hexo后，运行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure><p>初始化hexo组件，至此一个简单的hexo博客的框架已经搭建好了。</p><p>安装后的结果如图所示</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="/2020/01/09/%E5%B0%9D%E8%AF%95%E7%9D%80%E7%94%A8%E4%B8%8Bhexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0/image-20200109223212975.png" alt title>                </div>                <div class="image-caption"></div>            </figure><h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>站点配置文件为hexo根目录下的_config.yml，我们称之为站点配置文件，要注意的是后面还有一个主题配置文件，文件名一样但路径不同，要注意区分。</p><p>可以在站点配置文件_config.yml中，找到以下片段并修改</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">title: XXX&#39;s Blog</span><br><span class="line">author: XXX</span><br><span class="line">language: zh-CH           #中文</span><br><span class="line"></span><br><span class="line">theme: next</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@github.com:XXX&#x2F;XXX.github.io.git #你的GitHub网址</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure><h2 id="本地部署"><a href="#本地部署" class="headerlink" title="本地部署"></a>本地部署</h2><p>运行以下指令，即可在本地直接部署hexo博客</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>访问<code>http://localhost:4000</code> 即可查看主页</p><p>修改配置文件和markdown文章时，一般只需要刷新就可以展示修改后的内容。</p><p>如果文件名等发生改变，需要重启本地服务器，也就是再运行一次以上指令。</p><h2 id="安装及修改主题"><a href="#安装及修改主题" class="headerlink" title="安装及修改主题"></a>安装及修改主题</h2><p>hexo基础框架搭建好后，我们可能需要更加完善的博客功能和更加美观的界面。</p><h3 id="安装hexo-indigo主题插件"><a href="#安装hexo-indigo主题插件" class="headerlink" title="安装hexo-indigo主题插件"></a>安装hexo-indigo主题插件</h3><p>hexo-indigo是一款基于hexo的主题插件，包含更完善的功能和更美观的主题界面，访问hexo-theme-material-indigo的主页wiki，<a href="https://github.com/yscoder/hexo-theme-indigo/wiki" target="_blank" rel="noopener">https://github.com/yscoder/hexo-theme-indigo/wiki</a>，获取安装教程</p><p>需要在themes/下安装主题，在根目录下运行git bash，运行以下指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;yscoder&#x2F;hexo-theme-indigo.git themes&#x2F;indigo</span><br></pre></td></tr></table></figure><p>下载indigo主题。</p><p>在站点配置文件<code>_config.yml</code>中修改：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: indigo</span><br></pre></td></tr></table></figure><p>即可启用indigo主题</p><p>其余必要的修改见上面提到的主页wiki，主题配置文件<code>themes/indigo/_config.yml</code>中有必要的注释，方便易懂每个配置项是什么。</p><h3 id="安装hexo-next主题插件"><a href="#安装hexo-next主题插件" class="headerlink" title="安装hexo-next主题插件"></a>安装hexo-next主题插件</h3><p>hexo-next是另一款基于hexo的主题插件，使用方法类似，在站点配置文件<code>_config.yml</code>中修改：，</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure><p>可以访问hexo-next的主页<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a> ，获取安装教程</p><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>hexo框架安装了主题后，整体有两个配置文件。</p><p>一个是站点配置文件<code>_config.yml</code></p><p>一个是主题配置文件<code>themes/indigo/_config.yml</code></p><p>此后有很多需要修改的地方，要注意是修改哪个配置文件。</p><h2 id="撰写文章"><a href="#撰写文章" class="headerlink" title="撰写文章"></a>撰写文章</h2><p>hexo框架的博客文章来源于博客目录下的<code>/source/_post</code>里的.md文件</p><p>写好自己的md文件放到这个文件夹下，就可以在博客页面上展示了。</p><p>建议用typora来写自己的markdown文件，也就是写文章，操作方便。</p><p>撰写的文章在前端会全部展示，如果想展示一部分，其它的隐藏起来用阅读全文按钮包装，则只需要在自己的md文件里加上</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure><p>这个标签以后的内容会隐藏起来，点击阅读全文才会显示。</p><p>效果如图。</p><h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>默认的Hexo是无法插入图片的。需要安装hexo图片插件</p><p>运行以下指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure><p>安装好后，打开站点配置文件<code>_config.yml</code>，修改内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;安装hexo组件&quot;&gt;&lt;a href=&quot;#安装hexo组件&quot; class=&quot;headerlink&quot; title=&quot;安装hexo组件&quot;&gt;&lt;/a&gt;安装hexo组件&lt;/h2&gt;&lt;p&gt;首先容我吐槽一下，这篇文章是一边安装hexo、搭建hexo-next主题时候一边写的，安装的过程比我想象中的还是麻烦太多太多了我佛了。（当然主要是自己踩了很多的坑）&lt;/p&gt;
-&lt;p&gt;首先保证全局安装git以及node.js（npm），这个不多赘述，直接上git和node.js的官网下载安装就行，网上也有很多教程，安装时也有图形化的提示，直接照着提示来就行。&lt;/p&gt;
-&lt;p&gt;一定要保证全局安装。&lt;/p&gt;
-&lt;p&gt;然后建立一个空文件夹，右键-&amp;gt;Git bash here，一定要是新建的空的文件夹，后面称之为根目录。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="-学习 -环境搭建" scheme="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
-    
-      <category term="-hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   
